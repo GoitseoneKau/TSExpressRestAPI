@@ -7,18 +7,15 @@
   "types": "./dist/index.d.cts",
   "type": "module",
   "scripts": {
-    "start": "tsx src/index.ts",
+    "start": "tsx public/index.ts",
     "build": "pkgroll",
     "serve": "tsx dist/index.mjs"
   },
   "exports": {
-    "require": {
-      "types": "./dist/index.d.cts",
-      "default": "./dist/index.cjs"
-    },
-    "import": {
-      "types": "./dist/index.d.mts",
-      "default": "./dist/index.mjs"
+    ".": {
+        "require": "./dist/index.js",
+        "import": "./dist/index.mjs",
+        "types": "./dist/index.d.ts"
     }
   },
   "author": "",
