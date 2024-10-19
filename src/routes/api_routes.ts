@@ -1,7 +1,7 @@
 import { User } from './types/user.js'
 import express from "express";
-import users from './users/db.json' with { type: "json" };
-import todos from './todos/db.json' with { type: "json" };
+import users from './users/users.json' with { type: "json" };
+import todos from './todos/todos.json' with { type: "json" };
 import { Todo } from './types/todo.js';
 
 
