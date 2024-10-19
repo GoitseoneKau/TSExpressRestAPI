@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname,'public')))
 
 app.use(cors())
 
-app.use("/api",api_routes);
+app.use(api_routes);
 app.get("/",(req,res)=>{
 res.send(__dirname)
 })
