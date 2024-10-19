@@ -18,10 +18,7 @@ app.use(cors())
 
 app.use("/api",api_routes);
 
-app.use("/",api_routes,(request,response)=>{
-    response.sendFile(__dirname+"/index.html")
-});
-
+//  
 
 
 app.listen(PORT, () => {
