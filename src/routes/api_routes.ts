@@ -1,8 +1,8 @@
-import { User } from './types/user.js'
+import { User } from '../assets/types/user.js'
 import express from "express";
-import users from './users/users_list.json' with { type: "json" };
-import todos from './todos/todos_list.json' with { type: "json" };
-import { Todo } from './types/todo.js';
+import users from '../assets/users/users_list.json' with { type: "json" };
+import todos from '../assets/todos/todos_list.json' with { type: "json" };
+import { Todo } from '../assets/types/todo.js';
 
 
 const router = express.Router();
