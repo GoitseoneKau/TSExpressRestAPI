@@ -14,7 +14,6 @@ router.use(express.json())
 
 //get all
 router.get('/users', (request,response)=>{//get is a request fuction from client
-
     response.json(users.users)//response to client, in json
 })
 
@@ -101,10 +100,9 @@ router.get('/todos/:id',(request,response)=>{//get is a request fuction from cli
 //post a new todo
 router.post('/todos',(request,response)=>{//get is a request fuction from client
     let todo = request.body as Todo
-
+    todo.id = todos.todos?.length+1
     todos.todos.push(todo)
     response.json(todos.todos)//201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
-    
 })
 
 
@@ -136,7 +134,6 @@ router.delete('/todos/:id',(request,response)=>{//get is a request fuction from 
     let user = request.body as Todo
     let id = parseInt(request.params.id)
 
- 
 
     if(user){
         const userToDelete = todos.todos.find((user)=>user.id === id)

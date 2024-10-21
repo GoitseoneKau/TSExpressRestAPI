@@ -6,7 +6,7 @@ import cors from 'cors'
 import api_routes from './src/routes/api_routes.js'
 import path from 'path'
 import { fileURLToPath } from 'url';
-
+import fs from 'fs'
 
 const PORT =process.env.PORT || 8000;
 const app = express();
@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname,'public')))
 
 app.use(cors())
 
-app.use(api_routes);
+app.use("/api",api_routes);
 app.get("/",(req,res)=>{
 res.send(__dirname)
 })
