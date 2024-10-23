@@ -27,9 +27,8 @@ router.get('/users/:id',(request,response)=>{//get is a request fuction from cli
 
 //post a new user
 router.post('/users',(request,response)=>{//get is a request fuction from client
-    console.log("post requested")
     let user = request.body.user as User
-    user.id = users.users?.length+1
+    user.id = users.users.length+1
 
     if(user){
         users.users.push(user)
