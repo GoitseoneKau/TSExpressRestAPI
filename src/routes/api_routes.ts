@@ -27,12 +27,15 @@ router.get('/users/:id',(request,response)=>{//get is a request fuction from cli
 
 //post a new user
 router.post('/users',(request,response)=>{//get is a request fuction from client
-    let user = request.body.user as User
-    user.id = users.users.length+1
+    let user = request.body as User
+    console.log(user,users.users.length)
+    user.id = users.users!.length+1
 
     if(user){
         users.users.push(user)
         response.json(users)//201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
+    }else{
+        response.json({message:"user not created"})
     }
 })
 

@@ -15,13 +15,15 @@ router.get('/users/:id', (request, response) => {
 });
 //post a new user
 router.post('/users', (request, response) => {
-    var _a;
-    console.log("post requested");
-    let user = request.body.user;
-    user.id = ((_a = users.users) === null || _a === void 0 ? void 0 : _a.length) + 1;
+    let user = request.body;
+    console.log(user, users.users.length);
+    user.id = users.users.length + 1;
     if (user) {
         users.users.push(user);
         response.json(users); //201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
+    }
+    else {
+        response.json({ message: "user not created" });
     }
 });
 //update a user
@@ -72,6 +74,7 @@ router.get('/todos/:id', (request, response) => {
 //post a new todo
 router.post('/todos', (request, response) => {
     let todo = request.body;
+    todo.id = todos.todos.length + 1;
     todos.todos.push(todo);
     response.json(todos.todos); //201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
 });
