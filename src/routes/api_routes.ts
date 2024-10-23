@@ -99,7 +99,7 @@ router.get('/todos/:id',(request,response)=>{//get is a request fuction from cli
 //post a new todo
 router.post('/todos',(request,response)=>{//get is a request fuction from client
     let todo = request.body as Todo
-    todo.id = todos.todos?.length+1
+    todo.id = todos.todos.length+1
     todos.todos.push(todo)
     response.json(todos.todos)//201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
 })
