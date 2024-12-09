@@ -46,12 +46,13 @@ router.put('/users/:id',(request,response)=>{//get is a request fuction from cli
         const userToUpdate = users.users.find((user)=>user.id===id)
         if(userToUpdate){
            
-            userToUpdate.email =user.email
-            userToUpdate.firstName =user.firstName
-            userToUpdate.lastName =user.lastName
-            userToUpdate.password =user.password
-            userToUpdate.phone =user.phone
+            userToUpdate.email = user.email
+            userToUpdate.firstName = user.firstName
+            userToUpdate.lastName = user.lastName
+            userToUpdate.password = user.password
+            userToUpdate.phone = user.phone
            
+            users.users.map((user)=>user.id===id?({...user,userToUpdate}):user)
             response.json(users.users)//201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
 
         }else{
@@ -73,7 +74,7 @@ router.delete('/users/:id',(request,response)=>{//get is a request fuction from 
 
             users.users = newList
 
-            response.json(newList)//201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
+            response.json(users.users)//201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
 
         }else{
             response.json({message:"user was not found"})
@@ -101,9 +102,13 @@ router.get('/todos/:id',(request,response)=>{//get is a request fuction from cli
 //post a new todo
 router.post('/todos',(request,response)=>{//get is a request fuction from client
     let todo = request.body as Todo
-    todo.id = todos.todos.length+1
-    todos.todos.push(todo)
-    response.json(todos.todos)//201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
+    if(todo){
+        todo.id = todos.todos.length+1
+        todos.todos.push(todo)
+        response.json(todos.todos)//201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
+    }else{
+        response.json({message:"todo was not created"})
+    }
 })
 
 
@@ -112,18 +117,20 @@ router.put('/todos/:id',(request,response)=>{//get is a request fuction from cli
     let todo = request.body as Todo
     let id = parseInt(request.params.id)
     
-        const todoToUpdate = todos.todos.find((user)=>user.id===id)
+        const todoToUpdate = todos.todos.find((todo)=>todo.id===id)
         if(todoToUpdate){
+            todoToUpdate.id = id
             todoToUpdate.todo =todo.todo
             todoToUpdate.priority =todo.priority
             todoToUpdate.priorityColor =todo.priorityColor
             todoToUpdate.dueDate =todo.dueDate
             todoToUpdate.completed =todo.completed
       
+            todos.todos.map((todo)=>todo.id===id?({...todo,todoToUpdate}):todo)
             response.json(todos.todos)//201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
 
         }else{
-            response.json({message:" was not found"})
+            response.json({message:"todo was not found"})
         }
     
     
@@ -143,10 +150,10 @@ router.delete('/todos/:id',(request,response)=>{//get is a request fuction from 
 
             todos.todos = newList
        
-            response.json(newList)//201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
+            response.json(todos.todos)//201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
 
         }else{
-            response.json({message:"user was not found"})
+            response.json({message:"todo was not deleted"})
         }
     
     }

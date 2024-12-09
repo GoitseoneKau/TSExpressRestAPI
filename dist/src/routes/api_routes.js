@@ -16,7 +16,6 @@ router.get('/users/:id', (request, response) => {
 //post a new user
 router.post('/users', (request, response) => {
     let user = request.body;
-    console.log(user, users.users.length);
     user.id = users.users.length + 1;
     if (user) {
         users.users.push(user);
@@ -82,13 +81,16 @@ router.post('/todos', (request, response) => {
 router.put('/todos/:id', (request, response) => {
     let todo = request.body;
     let id = parseInt(request.params.id);
-    const todoToUpdate = todos.todos.find((user) => user.id === id);
+    const todoToUpdate = todos.todos.find((todo) => todo.id === id);
     if (todoToUpdate) {
+        todoToUpdate.id = id;
         todoToUpdate.todo = todo.todo;
         todoToUpdate.priority = todo.priority;
         todoToUpdate.priorityColor = todo.priorityColor;
         todoToUpdate.dueDate = todo.dueDate;
         todoToUpdate.completed = todo.completed;
+        todos.todos = todos.todos.filter(() => todo.id !== id);
+        todos.todos.push(todoToUpdate);
         response.json(todos.todos); //201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
     }
     else {

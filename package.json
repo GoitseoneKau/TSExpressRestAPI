@@ -11,7 +11,8 @@
   {
     "start": "tsx --env-file=.env index.ts",
     "build": "tsc ",
-    "serve": "tsx dist/index.js"
+    "serve": "tsx dist/index.js",
+    "dev": "tsx --watch index.ts"
   },
   "exports": 
   {
