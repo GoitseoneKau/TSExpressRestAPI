@@ -20,8 +20,9 @@ app.use(express.static(path.join(__dirname,'public')))
 app.use(cors())
 
 app.use("/api",api_routes);
-app.use("/",(req,res)=>{
-    res.render('index.html')
+app.get("/",(req,res)=>{
+    const index = path.join(__dirname,'public','index.html')
+    res.send(index)
 })
 
 
