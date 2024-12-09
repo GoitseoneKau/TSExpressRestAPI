@@ -20,11 +20,9 @@ app.use(express.static(path.join(__dirname,'public')))
 app.use(cors())
 
 app.use("/api",api_routes);
-app.get("/",(req,res)=>{
-res.send(__dirname)
+app.use("/",(req,res)=>{
+    res.render('index.html')
 })
-
-
 
 
 app.listen(PORT, () => {

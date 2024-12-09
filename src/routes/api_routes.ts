@@ -52,7 +52,9 @@ router.put('/users/:id',(request,response)=>{//get is a request fuction from cli
             userToUpdate.password = user.password
             userToUpdate.phone = user.phone
            
-            users.users.map((user)=>user.id===id?({...user,userToUpdate}):user)
+            users.users.map(
+                (user)=>user.id===id?({...user,userToUpdate}):(user)
+            )
             response.json(users.users)//201 'Created' - Indicates that the request has succeeded and a new resource has been created as a result.
 
         }else{
